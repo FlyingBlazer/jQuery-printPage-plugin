@@ -69,11 +69,11 @@
 			  if (pluginOptions.id == 'undefined')
 				    pluginOptions.id = '';
 
-        if(!$('#printPage')[0]){
+        if(!$('#printPage' + pluginOptions.id)[0]){
           $("body").append(components.iframe(url));
-          $('#printPage').on("load",function() {  printit(pluginOptions);  });
+          $('#printPage' + pluginOptions.id).on("load",function() {  printit(pluginOptions);  });
         }else{
-          $('#printPage').attr("src", url);
+          $('#printPage' + pluginOptions.id).attr("src", url);
         }
     }
     /*
@@ -83,8 +83,8 @@
 
       var selector = 'printPage' + pluginOptions.id;
 
-      frames.printPage.focus();
-      frames.printPage.print();
+      frames[selector].focus();
+      frames[selector].print();
       if(pluginOptions.showMessage){
         unloadMessage();
       }
